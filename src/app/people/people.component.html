@@ -1,21 +1,37 @@
-<table>
-    <thead>
-      <th>id</th>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Address</th>
-      <th>Phone</th>
-      <th>Website</th>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of persons">
-        <td>{{item.id}}</td>
-        <td>{{item.name}}</td>
-        <td>{{item.email}}</td>
-        <td>{{item.address.city}}, {{item.address.zipcode}}</td>
-        <td>{{item.phone}}</td>
-        <td>{{item.website}}</td>
-      </tr>
-    </tbody>
-</table>
-  
+<mat-card>
+    <mat-card-header>
+      <mat-card-title>اطلاعات اشخاص</mat-card-title>
+      <mat-card-subtitle>Data received from the site: https://jsonplaceholder.typicode.com/users</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <table mat-table [dataSource]="persons" class="mat-elevation-z8">
+            <ng-container matColumnDef="شناسه">
+                <th mat-header-cell *matHeaderCellDef> شناسه </th>
+                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="نام">
+                <th mat-header-cell *matHeaderCellDef> نام </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="ایمیل">
+                <th mat-header-cell *matHeaderCellDef> ایمیل </th>
+                <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="آدرس">
+                <th mat-header-cell *matHeaderCellDef> آدرس </th>
+                <td mat-cell *matCellDef="let element"> {{element.address.city}} / {{element.address.zipcode}} </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="تلفن">
+                <th mat-header-cell *matHeaderCellDef> تلفن </th>
+                <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+            </ng-container>
+        
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </mat-card-content>
+  </mat-card>

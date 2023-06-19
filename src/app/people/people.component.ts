@@ -14,4 +14,5 @@ export class PeopleComponent implements OnInit {
     this.peopleService.getData().subscribe(data => this.persons = data)
   }
   persons: any = {}
+  displayedColumns: string[] = ['شناسه', 'نام','ایمیل', 'آدرس','تلفن'];
 }
